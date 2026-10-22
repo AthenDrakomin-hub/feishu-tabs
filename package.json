@@ -5,7 +5,9 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "dist": "electron-builder --win portable"
+    "dist": "electron-builder --win",
+    "dist:portable": "electron-builder --win portable",
+    "dist:nsis": "electron-builder --win nsis"
   },
   "devDependencies": {
     "electron": "^31.0.0",
@@ -22,12 +24,22 @@
     ],
     "win": {
       "target": [
-        "portable"
+        { "target": "portable" },
+        { "target": "nsis" }
       ]
     },
     "electronLanguages": ["zh-CN", "en-US"],
     "portable": {
       "artifactName": "飞书多账号-${version}-portable.exe"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "飞书多账号",
+      "artifactName": "飞书多账号-${version}-setup.exe"
     }
   }
 }
